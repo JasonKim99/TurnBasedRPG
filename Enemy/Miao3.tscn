@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/人物/黑苗/非战斗/《仙剑奇侠传》98柔情篇全部素材-611-4_爱给网_aigei_com.png" type="Texture" id=1]
+
+[node name="Area2D" type="Area2D"]
+
+[node name="NormalSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -23 )
+
+[node name="BattleSprite" type="Sprite" parent="."]

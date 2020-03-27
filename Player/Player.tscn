@@ -1,0 +1,345 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-左下走1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-右下走1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-右下.png" type="Texture" id=3]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-左上.png" type="Texture" id=4]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-站立.png" type="Texture" id=5]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-左下.png" type="Texture" id=6]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-右上.png" type="Texture" id=7]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-右上走2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-右上走1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-右下走2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-左上走2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-左下走2.png" type="Texture" id=12]
+[ext_resource path="res://Assets/人物/李逍遥/非战斗/李逍遥-左上走1.png" type="Texture" id=13]
+[ext_resource path="res://Player/Player.gd" type="Script" id=14]
+[ext_resource path="res://Player/StateMachine/Move.gd" type="Script" id=15]
+[ext_resource path="res://Player/StateMachine/PlayerStateMachine.gd" type="Script" id=16]
+[ext_resource path="res://Player/StateMachine/Battle.gd" type="Script" id=17]
+[ext_resource path="res://Player/Li.gd" type="Script" id=18]
+[ext_resource path="res://Player/Anu.gd" type="Script" id=19]
+[ext_resource path="res://Player/Zhao.gd" type="Script" id=20]
+[ext_resource path="res://Player/Lin.gd" type="Script" id=21]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-普攻3.png" type="Texture" id=22]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-普攻2.png" type="Texture" id=23]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-普攻1.png" type="Texture" id=24]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-受伤.png" type="Texture" id=25]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-死亡.png" type="Texture" id=26]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-濒危png.png" type="Texture" id=27]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-施法.png" type="Texture" id=28]
+[ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-施法前摇.png" type="Texture" id=29]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 4.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "DownLeft"
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "DownLeftIdle"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "DownRight"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "TopLeft"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ), ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "AlmostDie"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 27 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Die"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 26 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 25 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "ManaAttack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 29 ), ExtResource( 28 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "NormalAttack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 23 ), ExtResource( 22 ) ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_mask = 2
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+
+[node name="AtEaseMode" type="Node2D" parent="." groups=[
+"AtEase",
+]]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="AtEaseMode"]
+texture = ExtResource( 12 )
+offset = Vector2( 0, -23 )
+
+[node name="Camera2D" type="Camera2D" parent="AtEaseMode"]
+current = true
+zoom = Vector2( 0.6, 0.6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AtEaseMode"]
+anims/DownLeft = SubResource( 2 )
+anims/DownLeftIdle = SubResource( 3 )
+anims/DownRight = SubResource( 4 )
+anims/DownRightIdle = SubResource( 5 )
+anims/TopLeft = SubResource( 6 )
+anims/TopLeftIdle = SubResource( 7 )
+anims/TopRight = SubResource( 8 )
+anims/TopRightIdle = SubResource( 9 )
+
+[node name="BattleMode" type="Node" parent="."]
+
+[node name="YSort" type="YSort" parent="BattleMode"]
+
+[node name="Li" type="Node2D" parent="BattleMode/YSort" groups=[
+"BattlePlayer",
+]]
+script = ExtResource( 18 )
+attackType = "ThrowItem"
+
+[node name="Sprite" type="Sprite" parent="BattleMode/YSort/Li"]
+texture = ExtResource( 24 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleMode/YSort/Li/Sprite"]
+autoplay = "Idle"
+anims/AlmostDie = SubResource( 14 )
+anims/Die = SubResource( 10 )
+anims/Hurt = SubResource( 11 )
+anims/Idle = SubResource( 12 )
+anims/ManaAttack = SubResource( 15 )
+anims/NormalAttack = SubResource( 13 )
+
+[node name="Zhao" type="Sprite" parent="BattleMode/YSort"]
+visible = false
+script = ExtResource( 20 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleMode/YSort/Zhao"]
+
+[node name="Lin" type="Sprite" parent="BattleMode/YSort"]
+visible = false
+script = ExtResource( 21 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleMode/YSort/Lin"]
+
+[node name="Anu" type="Sprite" parent="BattleMode/YSort"]
+visible = false
+script = ExtResource( 19 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleMode/YSort/Anu"]
+
+[node name="PlayerStateMachine" type="Node" parent="." groups=[
+"stateMachine",
+]]
+script = ExtResource( 16 )
+
+[node name="Move" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 15 )
+
+[node name="Battle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 17 )
