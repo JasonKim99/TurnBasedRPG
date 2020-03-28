@@ -6,13 +6,18 @@ export var maxMana : int
 export var currentMana : int
 export var shenfa : int
 export (String, "NormalAttack" , "ManaAttack" , "ThrowItem" , "UseItem") var attackType
-export var normalAttackDamage = 10
+export var normalAttackDamage = 540
 export var normalAttackRate = 0.75
 
-signal stats(currentHealth , maxHealth , currentMana, maxMana)
-signal attack(damage,rate)
+var castData = CastData.new().dictionary
 
-onready var anim = $Sprite/AnimationPlayer
+
+signal stats(currentHealth , maxHealth , currentMana, maxMana)
+signal attackFinished(value,rate)
+signal damageTaken
+
+onready var anim = $AnimationPlayer
+onready var damageLabel = $Damage
 
 func _ready():
 	maxHealth = 200
@@ -31,9 +36,30 @@ func attackWith(attackType):
 		"NormalAttack":
 			anim.play("NormalAttack")
 			yield(anim,"animation_finished")
-			emit_signal("attack",normalAttackDamage, normalAttackRate)
+			emit_signal("attackFinished",normalAttackDamage, normalAttackRate)
 			anim.play("Idle")
+#			return castData[attackType]
 		_:
 			pass
-			
+
+func takeDamage(damage,rate):
+	if rate >= randf():
+		currentHealth -= damage
+		damageLabel.text = String(damage)
+		updateStats()
+		anim.play("Hurt")
+		yield(anim,"animation_finished")
+		emit_signal("damageTaken")
+		currentHealth = max(0 , currentHealth)
+		if currentHealth == 0:
+			anim.play("Die")
+		elif currentHealth <= maxHealth * 0.1:
+			anim.play("AlmostDie")
+		else:
+			anim.play("Idle")
+	else:
+		anim.play("Miss")
+		yield(anim,"animation_finished")
+		emit_signal("damageTaken")
+	pass
 

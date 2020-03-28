@@ -31,9 +31,11 @@ func update_input(event):
 		elif event.is_action_pressed("ui_cancel"):
 			owner.selectEnemyMode("Cancel")
 		elif event.is_action_pressed("ui_accept"):
-			owner.saveToAttackQueue(owner.player1,owner.selectedEnemy, owner.player1.attackType)
-			if owner.player2:
+			owner.saveToPlayerAttackQueue(owner.player1,owner.selectedEnemy, owner.player1.attackType)
+			if owner.alivePlayer.has(owner.player2):
 				enter("Player2Turn")
+			elif owner.alivePlayer.has(owner.player3):
+				enter("Player3Turn")
 			else:
 				enter("PlayerCast")
 		pass

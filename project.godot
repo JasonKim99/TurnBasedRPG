@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "CastData",
+"language": "GDScript",
+"path": "res://CastData.gd"
+}, {
 "base": "Node",
 "class": "EnemyStateMachine",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://src/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"CastData": "",
 "EnemyStateMachine": "",
 "PlayerStateMachine": "",
 "State": "",

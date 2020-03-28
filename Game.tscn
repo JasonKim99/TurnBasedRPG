@@ -10,7 +10,7 @@
 visible = false
 
 [node name="FocusBeacon" parent="BattleField" index="2"]
-frame = 1
+frame = 6
 
 [node name="Field" parent="." instance=ExtResource( 1 )]
 
@@ -30,8 +30,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="battleStart" from="Field/EnterBattleArea" to="Field" method="_on_EnterBattleArea_battleStart"]
 [connection signal="battleStart" from="Field/EnterBattleArea" to="BattleField" method="_on_EnterBattleArea_battleStart"]
+[connection signal="battleStart" from="Field/EnterBattleArea" to="Field" method="_on_EnterBattleArea_battleStart"]
 [connection signal="item_selected" from="Debug/OptionButton" to="Debug/OptionButton" method="_on_OptionButton_item_selected"]
 
 [editable path="BattleField"]

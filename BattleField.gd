@@ -52,8 +52,10 @@ var previousIndex = 0
 var selectIndex = 0
 
 var attackQueue = []
+var damageQueue
 
 func _ready():
+	randomize()
 #	_on_EnterBattleArea_battleStart()
 	pass
 
@@ -170,10 +172,12 @@ func selectEnemyMode(type):
 		"Finish":
 			selectedEnemy.unselected()
 			selectEnemyMode = false
+	selectIndex = 0
+	previousIndex = 0
 	pass
 
-func selectEnemy(positive):
-	if positive:
+func selectEnemy(clockwise: bool):
+	if clockwise:
 		selectIndex += 1
 		if selectIndex >= aliveEnemy.size():
 			selectIndex = 0
@@ -181,16 +185,26 @@ func selectEnemy(positive):
 		selectIndex -= 1
 		if selectIndex < 0:
 			selectIndex = aliveEnemy.size() - 1
-	
 	if previousIndex != selectIndex:
 		aliveEnemy[previousIndex].unselected()
 	aliveEnemy[selectIndex].selected()
 	previousIndex = selectIndex
 	selectedEnemy = aliveEnemy[selectIndex]
+	pass
 
-func saveToAttackQueue(from , to , with):
+func saveToPlayerAttackQueue(from , to , with):
 	attackQueue.append([from , to, with])
 	pass
+
+func performPlayerAttackQueue():
+	for queue in attackQueue:
+		queue[0].connect("attackFinished",queue[1],"takeDamage")
+		queue[0].attackWith(queue[2])
+		yield(queue[1],"damageTaken")
+		yield(get_tree().create_timer(0.5),"timeout")
+
+func selectPlayer():
+	return alivePlayer[randi() % alivePlayer.size()]
 
 func _on_NormalAttack_pressed():
 	focusBeacon.visible = false
@@ -199,8 +213,4 @@ func _on_NormalAttack_pressed():
 	selectEnemy(true)
 	pass # Replace with function body.
 
-func performAttackQueue():
-	for queue in attackQueue:
-		queue[0].connect("attack",queue[1],"takeDamage")
-		queue[0].attackWith(queue[2])
-		yield()
+
