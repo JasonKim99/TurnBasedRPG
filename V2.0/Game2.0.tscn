@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://V2.0/Field.tscn" type="PackedScene" id=1]
+[ext_resource path="res://V2.0/BattleField.tscn" type="PackedScene" id=2]
+
+[node name="Game" type="Node2D"]
+
+[node name="BattleField" parent="." instance=ExtResource( 2 )]
+
+[node name="Field" parent="." instance=ExtResource( 1 )]
+position = Vector2( -13.2116, -46.8639 )

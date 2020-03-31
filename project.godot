@@ -12,17 +12,22 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "CastData",
 "language": "GDScript",
-"path": "res://CastData.gd"
+"path": "res://V1.0/CastData.gd"
 }, {
 "base": "Node",
 "class": "EnemyStateMachine",
 "language": "GDScript",
-"path": "res://Enemy/EnemyStateMachine.gd"
+"path": "res://V1.0/Enemy/EnemyStateMachine.gd"
+}, {
+"base": "Node",
+"class": "PlayerData",
+"language": "GDScript",
+"path": "res://tests/globaltest.gd"
 }, {
 "base": "Node",
 "class": "PlayerStateMachine",
 "language": "GDScript",
-"path": "res://Player/StateMachine/PlayerStateMachine.gd"
+"path": "res://V1.0/Player/StateMachine/PlayerStateMachine.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -37,6 +42,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CastData": "",
 "EnemyStateMachine": "",
+"PlayerData": "",
 "PlayerStateMachine": "",
 "State": "",
 "StateMachine": ""
@@ -45,8 +51,12 @@ _global_script_class_icons={
 [application]
 
 config/name="TurnBaseRPG"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://V1.0/Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globaltest="*res://tests/globaltest.gd"
 
 [layer_names]
 
@@ -55,4 +65,4 @@ config/icon="res://icon.png"
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://V1.0/default_env.tres"

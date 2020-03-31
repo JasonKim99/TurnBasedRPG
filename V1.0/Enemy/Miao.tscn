@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/人物/黑苗/非战斗/《仙剑奇侠传》98柔情篇全部素材-28-10_爱给网_aigei_com.png" type="Texture" id=1]
+[ext_resource path="res://V1.0/Enemy/BattleMiao2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/人物/黑苗/非战斗/《仙剑奇侠传》98柔情篇全部素材-611-4_爱给网_aigei_com.png" type="Texture" id=8]
+[ext_resource path="res://V1.0/Enemy/BattleMiao1.tscn" type="PackedScene" id=13]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+onready var atEaseMode = $AtEaseMode
+onready var battleMode = $BattleMode/YSort
+onready var stateMachine = $EnemyStateMachine
+
+func _ready():
+	atEaseMode.visible = true
+	battleMode.visible = false
+	pass # Replace with function body.
+
+func atEaseSetup():
+	atEaseMode.visible = true
+	battleMode.visible = false
+	pass
+	
+func fightSetup():
+	atEaseMode.visible = false
+	battleMode.visible = true
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 6.51654
+height = 3.26096
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node
+
+onready var currentState = null setget enter
+onready var previousState = null
+#All the States
+var statesMap = {}
+
+func enter(nextState: String):
+	#这里传进来的参数是String,current和previous都是Node
+	if nextState == null:
+		return
+	else:
+		if currentState != null:
+			if currentState.name != nextState:
+				currentState.willExit(nextState)
+				previousState = currentState
+				currentState = statesMap[nextState]
+				currentState.didEnter(previousState.name)
+		else:
+			currentState = statesMap[nextState]
+			currentState.didEnter(currentState)
+
+func _physics_process(delta):
+	if currentState:
+		currentState.update_physics_process(delta)
+	pass
+	
+func _process(delta):
+	if currentState:
+		currentState.update_process(delta)
+	pass
+
+func _unhandled_input(event):
+	if currentState:
+		currentState.update_unhandled_input(event)
+	pass
+	
+func _input(event):
+	if currentState:
+		currentState.update_input(event)
+	pass
+
+
+func _ready():
+	for child in get_children():
+		statesMap[child.name] = child
+		child.connect(\"stateChanged\",self,\"changeState\")
+	pass
+
+func changeState(nextState):
+	enter(nextState)
+	pass
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends State
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends State
+
+func didEnter(from):
+	owner.fightSetup()
+	pass
+
+func update_physics_process(delta):
+	pass
+
+func update_process(delta):
+	pass
+
+func update_unhandled_input(event):
+	pass
+
+func update_input(event):
+	pass
+
+func willExit(to):
+	pass
+"
+
+[node name="Miao" type="Area2D" groups=[
+"CurrentEnemy",
+"MapEnemy",
+]]
+collision_layer = 2
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.16983, -5.26486 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="AtEaseMode" type="Node2D" parent="." groups=[
+"AtEase",
+]]
+
+[node name="Sprite" type="Sprite" parent="AtEaseMode"]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -27 )
+
+[node name="miao2" type="Sprite" parent="AtEaseMode/Sprite"]
+show_behind_parent = true
+position = Vector2( 2.88216, -47.151 )
+texture = ExtResource( 8 )
+
+[node name="miao3" type="Sprite" parent="AtEaseMode/Sprite"]
+position = Vector2( -40.0859, -28.1296 )
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AtEaseMode"]
+
+[node name="BattleMode" type="Node" parent="."]
+
+[node name="YSort" type="YSort" parent="BattleMode"]
+visible = false
+
+[node name="BattleMiao1" parent="BattleMode/YSort" instance=ExtResource( 13 )]
+
+[node name="BattleMiao2" parent="BattleMode/YSort" instance=ExtResource( 2 )]
+
+[node name="BattleMiao3" parent="BattleMode/YSort" instance=ExtResource( 2 )]
+position = Vector2( -61.0759, 21.8614 )
+spot = 3
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = SubResource( 3 )
+
+[node name="Move" type="Node" parent="EnemyStateMachine"]
+script = SubResource( 4 )
+
+[node name="Battle" type="Node" parent="EnemyStateMachine"]
+script = SubResource( 5 )

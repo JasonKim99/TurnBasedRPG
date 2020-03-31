@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://tests/icon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tests/Node2D2.gd" type="Script" id=2]
+
+[node name="Scene2" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="icon" parent="." instance=ExtResource( 1 )]
+position = Vector2( 772, 396 )

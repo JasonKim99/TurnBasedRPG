@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/地图场景/逍遥客栈.png" type="Texture" id=1]
+
+[node name="Field" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 323.434, -186.766 )
+texture = ExtResource( 1 )
