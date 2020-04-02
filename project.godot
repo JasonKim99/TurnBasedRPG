@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="TurnBaseRPG"
-run/main_scene="res://V1.0/Game.tscn"
+run/main_scene="res://V2.0/Game2.0.tscn"
 config/icon="res://icon.png"
 
 [autoload]

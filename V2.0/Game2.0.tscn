@@ -8,4 +8,4 @@
 [node name="BattleField" parent="." instance=ExtResource( 2 )]
 
 [node name="Field" parent="." instance=ExtResource( 1 )]
-position = Vector2( -13.2116, -46.8639 )
+position = Vector2( -17.9478, -39.6349 )

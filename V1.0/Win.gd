@@ -1,7 +1,7 @@
 extends State
 
 func didEnter(from):
-	print("喔唷不错哦")
+	print("苟")
 	pass
 
 func update_physics_process(delta):

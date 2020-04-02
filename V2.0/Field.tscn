@@ -1,9 +1,42 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/地图场景/逍遥客栈.png" type="Texture" id=1]
+[ext_resource path="res://V2.0/Leader.tscn" type="PackedScene" id=2]
+[ext_resource path="res://V2.0/Follower1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://V2.0/Players.gd" type="Script" id=4]
+[ext_resource path="res://V2.0/Control.gd" type="Script" id=5]
 
 [node name="Field" type="Node2D"]
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 323.434, -186.766 )
+position = Vector2( 328, -1216 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, 1029.37 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Players" type="YSort" parent="YSort"]
+script = ExtResource( 4 )
+
+[node name="Leader" parent="YSort/Players" instance=ExtResource( 2 )]
+position = Vector2( 368, 464 )
+
+[node name="Follower1" parent="YSort/Players" instance=ExtResource( 3 )]
+position = Vector2( 368, 464 )
+
+[node name="Follower2" parent="YSort/Players" instance=ExtResource( 3 )]
+position = Vector2( 368, 464 )
+
+[node name="Enemies" type="YSort" parent="YSort"]
+
+[node name="Obstacles" type="YSort" parent="YSort"]
+
+[node name="Collectables" type="YSort" parent="YSort"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

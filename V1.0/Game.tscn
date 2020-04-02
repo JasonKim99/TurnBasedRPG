@@ -15,10 +15,13 @@ pause_mode = 2
 visible = false
 
 [node name="FocusBeacon" parent="BattleField" index="2"]
-frame = 3
+frame = 7
 
 [node name="Field" parent="." instance=ExtResource( 1 )]
 pause_mode = 2
+
+[node name="Follower2" parent="Field/YSort/Players" index="1"]
+visible = true
 
 [node name="ColorRect" parent="Field/EnterBattleArea/Transition" index="0"]
 visible = false

@@ -16,6 +16,7 @@ var speed
 var direction = Vector2(1, -0.5)
 var idleAnim = "TopRightIdle"
 var isMoving = false
+var currentMove 
 
 signal followMe
 

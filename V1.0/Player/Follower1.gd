@@ -19,12 +19,6 @@ var offsets = {
 	Vector2(-1 , -0.5) : Vector2(24 , 12) 
 }
 
-func _ready():
-	previousPos = global_position
-#	print(currentDir.length_squared())
-#	print(global_position)
-	pass
-
 
 func follow(targetDir,targetSpeed,targetPos,perDis):
 	if positionPool.empty():
@@ -34,11 +28,11 @@ func follow(targetDir,targetSpeed,targetPos,perDis):
 	if not hooked:
 		dis += perDis.length()
 	if offsets[currentDir].length() <= dis and targetSpeed > 0:
-		var tp = positionPool.pop_front()
-		currentDir = tp[0]
-		global_position = tp[1]
+		var turningPoint = positionPool.pop_front()
+		currentDir = turningPoint[0]
+		global_position = turningPoint[1]
 		hooked = true
-		emit_signal("followMe",currentDir,targetSpeed,global_position,tp[2])
+		emit_signal("followMe",currentDir,targetSpeed,global_position,turningPoint[2])
 	playAnim(targetSpeed)
 	pass
 
