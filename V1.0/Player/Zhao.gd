@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 export var maxHealth = 200
 export var currentHealth = 200

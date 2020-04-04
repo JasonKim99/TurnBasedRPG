@@ -18,18 +18,29 @@ func update_unhandled_input(event):
 	pass
 
 func update_input(event):
-	if owner.selectEnemyMode:
+	if owner.selectEnemyMode == owner.SelectMode.Single:
 		get_tree().set_input_as_handled()
 		if event.is_action_pressed("ui_right"):
-			owner.selectEnemy(true)
+			owner.selectSingleEnemy(true)
 		elif event.is_action_pressed("ui_left"):
-			owner.selectEnemy(false)
+			owner.selectSingleEnemy(false)
 		elif event.is_action_pressed("ui_up"):
-			owner.selectEnemy(false)
+			owner.selectSingleEnemy(false)
 		elif event.is_action_pressed("ui_down"):
-			owner.selectEnemy(true)
+			owner.selectSingleEnemy(true)
 		elif event.is_action_pressed("ui_cancel"):
-			owner.selectEnemyMode("Cancel")
+			owner.selectEnemySetup(owner.SelectMode.Cancel)
+		elif event.is_action_pressed("ui_accept"):
+			owner.saveToPlayerAttackQueue(owner.player1,owner.selectedEnemy, owner.player1.attackType)
+			if owner.alivePlayer.has(owner.player2):
+				enter("Player2Turn")
+			elif owner.alivePlayer.has(owner.player3):
+				enter("Player3Turn")
+			else:
+				enter("PlayerCast")
+	elif owner.selectEnemyMode == owner.SelectMode.Multiple:
+		if event.is_action_pressed("ui_cancel"):
+			owner.selectEnemySetup(owner.SelectMode.Cancel)
 		elif event.is_action_pressed("ui_accept"):
 			owner.saveToPlayerAttackQueue(owner.player1,owner.selectedEnemy, owner.player1.attackType)
 			if owner.alivePlayer.has(owner.player2):
@@ -43,6 +54,6 @@ func update_input(event):
 
 func willExit(to):
 	owner.guiActive(false)
-	owner.selectEnemyMode("Finish")
+	owner.selectEnemySetup(owner.SelectMode.Finish)
 #	owner.selectEnemyMode = false
 	pass

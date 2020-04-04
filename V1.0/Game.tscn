@@ -15,7 +15,7 @@ pause_mode = 2
 visible = false
 
 [node name="FocusBeacon" parent="BattleField" index="2"]
-frame = 7
+frame = 0
 
 [node name="Field" parent="." instance=ExtResource( 1 )]
 pause_mode = 2

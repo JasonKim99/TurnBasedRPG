@@ -9,3 +9,5 @@
 
 [node name="Field" parent="." instance=ExtResource( 1 )]
 position = Vector2( -17.9478, -39.6349 )
+
+[editable path="Field"]

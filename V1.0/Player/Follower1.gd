@@ -33,6 +33,8 @@ func follow(targetDir,targetSpeed,targetPos,perDis):
 		global_position = turningPoint[1]
 		hooked = true
 		emit_signal("followMe",currentDir,targetSpeed,global_position,turningPoint[2])
+	else:
+		emit_signal("followMe",currentDir,targetSpeed,global_position,Vector2.ZERO)
 	playAnim(targetSpeed)
 	pass
 

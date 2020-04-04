@@ -14,6 +14,7 @@ var previousDir
 var currentAnim
 var idleAnim = "TopRightIdle"
 
+
 func _physics_process(delta):
 	setDirAndSpeed()
 	global_position += direction * speed
@@ -72,6 +73,4 @@ func playMoveAnim(dir,velocity):
 		currentAnim = idleAnim
 	
 	anim.play(currentAnim)
-
-
 

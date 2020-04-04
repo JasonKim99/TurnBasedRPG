@@ -32,7 +32,7 @@ func updateStats():
 	emit_signal("stats", currentHealth , maxHealth , currentMana, maxMana)
 
 func attackWith(attackType):
-	print(anim.current_animation)
+#	print(anim.current_animation)
 	match attackType:
 		"NormalAttack":
 			anim.play("NormalAttack")

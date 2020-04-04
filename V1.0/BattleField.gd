@@ -47,7 +47,13 @@ onready var player3Bar = $BattleGUI/GUI/PlayerBar3
 
 var selectedPlayer
 var selectedEnemy
-var selectEnemyMode = false
+var selectEnemyMode
+enum SelectMode {
+	Single,
+	Multiple,
+	Cancel,
+	Finish,
+}
 var previousIndex = 0
 var selectIndex = 0
 
@@ -161,22 +167,22 @@ func beaconFocusTo(target):
 func buttonFocusSetup():
 	buttons.get_node("NormalAttack").grab_focus()
 
-func selectEnemyMode(type):
+func selectEnemySetup(type):
 	match type:
-		"On":
-			selectEnemyMode = true
-		"Cancel":
-			selectedEnemy.unselected()
-			selectEnemyMode = false
+		SelectMode.Single:
+			selectSingleEnemy(true)
+		SelectMode.Multiple:
+			selectMultipleEnmey()
+		SelectMode.Cancel:
+			resetSelection()
 			focusBeacon.visible = true
-		"Finish":
-			selectedEnemy.unselected()
-			selectEnemyMode = false
+		SelectMode.Finish:
+			resetSelection()
 	selectIndex = 0
 	previousIndex = 0
 	pass
 
-func selectEnemy(clockwise: bool):
+func selectSingleEnemy(clockwise: bool):
 	if clockwise:
 		selectIndex += 1
 		if selectIndex >= aliveEnemy.size():
@@ -192,15 +198,42 @@ func selectEnemy(clockwise: bool):
 	selectedEnemy = aliveEnemy[selectIndex]
 	pass
 
+func selectMultipleEnmey():
+	for enemy in aliveEnemy:
+		enemy.selected()
+
+func resetSelection():
+	for enemy in aliveEnemy:
+		enemy.unselected()
+	selectEnemyMode = null
+
 func saveToPlayerAttackQueue(from , to , with):
 	attackQueue.append([from , to, with])
 	pass
 
 func performPlayerAttackQueue():
 	for queue in attackQueue:
-		queue[0].connect("attackFinished",queue[1],"takeDamage")
-		queue[0].attackWith(queue[2])
-		yield(queue[1],"damageTaken")
+		var from = queue[0]
+		var to = queue[1]
+		var attackType = queue[2]
+		match attackType:
+			"NormalAttack":
+				from.connect("attackFinished",to,"takeDamage")
+				from.attackWith(attackType)
+				yield(to,"damageTaken")
+				from.disconnect("attackFinished",to,"takeDamage")
+			"ManaAttack":
+				var connectedEnemy = []
+				var lastEnemy
+				for enemy in aliveEnemy:
+					from.connect("attackFinished",enemy,"takeDamage")
+					connectedEnemy.append(enemy)
+					if enemy == aliveEnemy.back():
+						lastEnemy = enemy
+				from.attackWith("NormalAttack")
+				yield(lastEnemy,"damageTaken")
+				for enemy in connectedEnemy:
+					from.disconnect("attackFinished",enemy,"takeDamage")
 		yield(get_tree().create_timer(0.5),"timeout")
 
 func selectPlayer():
@@ -212,8 +245,15 @@ func selectPlayer():
 func _on_NormalAttack_pressed():
 	focusBeacon.visible = false
 	selectedPlayer.attackType = "NormalAttack"
-	selectEnemyMode("On")
-	selectEnemy(true)
+	selectEnemyMode = SelectMode.Single
+	selectEnemySetup(selectEnemyMode)
 	pass # Replace with function body.
 
 
+
+func _on_ManaAttack_pressed():
+	focusBeacon.visible = false
+	selectedPlayer.attackType = "ManaAttack"
+	selectEnemyMode = SelectMode.Multiple
+	selectEnemySetup(SelectMode.Multiple)
+	pass # Replace with function body.

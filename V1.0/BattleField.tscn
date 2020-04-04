@@ -31,7 +31,6 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="FocusBeacon" parent="." instance=ExtResource( 13 )]
 scale = Vector2( 0.5, 0.5 )
-frame = 7
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -98,6 +97,7 @@ script = ExtResource( 11 )
 
 [node name="BattleGUI" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
+[connection signal="pressed" from="BattleGUI/GUI/Buttons/ManaAttack" to="." method="_on_ManaAttack_pressed"]
 [connection signal="pressed" from="BattleGUI/GUI/Buttons/NormalAttack" to="." method="_on_NormalAttack_pressed"]
 
 [editable path="BattleGUI"]

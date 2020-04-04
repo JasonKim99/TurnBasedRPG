@@ -40,12 +40,12 @@ func takeDamage(value,rate):
 		damageLabel.text = String(value)
 		anim.play("Hurt")
 		yield(anim,"animation_finished")
-		emit_signal("damageTaken")
 		currentHealth = max(0 , currentHealth)
 		if currentHealth == 0:
 			anim.play("Die")
 		else:
 			anim.play("Idle")
+		emit_signal("damageTaken")
 	else:
 		anim.play("Miss")
 		yield(anim,"animation_finished")

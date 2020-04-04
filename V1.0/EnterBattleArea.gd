@@ -1,4 +1,3 @@
-tool
 extends Area2D
 
 signal battleStart
@@ -20,7 +19,6 @@ func _on_EnterBattleArea_body_entered(body):
 	anim.play("Transition")
 	yield(anim,"animation_finished")
 	emit_signal("battleStart")
-	transition()
 #	monitoring =false
 	
 	pass # Replace with function body.

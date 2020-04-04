@@ -30,7 +30,5 @@ func update_input(event):
 	pass
 
 func willExit(to):
-	for queue in owner.attackQueue:
-		queue[0].disconnect("attackFinished",queue[1],"takeDamage")
 	owner.attackQueue = []
 	pass
