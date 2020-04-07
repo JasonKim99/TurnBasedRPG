@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "States",
+"language": "GDScript",
+"path": "res://V2.0/State.gd"
 } ]
 _global_script_class_icons={
 "CastData": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "PlayerData": "",
 "PlayerStateMachine": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"States": ""
 }
 
 [application]

@@ -5,6 +5,9 @@ signal followMe()
 
 onready var anim = $Li/AnimationPlayer
 
+var battlePlayer1 = load("res://V2.0/BattleLi.tscn")
+var battlePlayer = [battlePlayer1]
+
 
 var direction = Vector2(1,-0.5)
 var maxSpeed = 2

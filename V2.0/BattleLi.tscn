@@ -13,7 +13,7 @@
 [ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-普攻1.png" type="Texture" id=11]
 [ext_resource path="res://Assets/人物/李逍遥/战斗/李逍遥-受伤.png" type="Texture" id=12]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -83,7 +83,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -190,7 +190,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 0.8 )
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -225,7 +225,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -260,7 +260,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -295,7 +295,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2 )
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -358,10 +358,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-anims/AlmostDie = SubResource( 2 )
-anims/Die = SubResource( 3 )
-anims/Hurt = SubResource( 4 )
-anims/Idle = SubResource( 5 )
-anims/ManaAttack = SubResource( 6 )
-anims/Miss = SubResource( 7 )
-anims/NormalAttack = SubResource( 8 )
+anims/AlmostDie = SubResource( 1 )
+anims/Die = SubResource( 2 )
+anims/Hurt = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/ManaAttack = SubResource( 5 )
+anims/Miss = SubResource( 6 )
+anims/NormalAttack = SubResource( 7 )

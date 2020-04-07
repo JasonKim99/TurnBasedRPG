@@ -176,7 +176,6 @@ tracks/7/keys = {
 [node name="BattleMiao2" type="Node2D" groups=[
 "BattleEnemy",
 ]]
-position = Vector2( 48, -32 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
