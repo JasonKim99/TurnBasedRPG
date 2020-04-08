@@ -188,8 +188,8 @@ anims/Miss = ExtResource( 6 )
 anims/Selected = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-offset = Vector2( -16, -40 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -32 )
 
 [node name="Damage" type="Label" parent="."]
 visible = false

@@ -42,7 +42,6 @@ func attackWith(attackType):
 				anim.play("AlmostDie")
 			else:
 				anim.play("Idle")
-#			return castData[attackType]
 		_:
 			pass
 
