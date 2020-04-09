@@ -55,7 +55,7 @@ position = Vector2( 456, 272 )
 
 [node name="Beacon" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 0.6, 0.6 )
-frame = 5
+frame = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 304 )

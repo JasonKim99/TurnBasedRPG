@@ -26,7 +26,7 @@ func unselected():
 	anim.play("Idle")
 
 func attack():
-	anim.play("Attack")
+	anim.play("Attack")  
 	yield(anim,"animation_finished")
 	emit_signal("attackFinished",damagevalue,rate)
 	anim.play("Idle")

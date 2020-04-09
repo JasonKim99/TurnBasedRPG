@@ -1,5 +1,5 @@
 extends States
 
 func didEnter(from):
-	print("Wala~~~~")
+	owner.performEnemyAttack()
 	pass

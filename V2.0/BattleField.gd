@@ -235,15 +235,37 @@ func performPlayerAttackQueue():
 				player.connect("attackFinished",enemy,"takeDamage")
 				player.attackWith(attackType)
 				yield(enemy,"damageTaken")
+				player.disconnect("attackFinished",enemy,"takeDamage")
 		yield(get_tree().create_timer(0.5),"timeout")
 		if enemy.currentHealth == 0:
 			aliveEnemys.erase(enemy)
 			defeatedEnemy.append(enemy)
 		if aliveEnemys.empty():
 			stateMachine.enter("Win")
+			break
 		else:
 			if queue == playerAttackQueue.back():
 				stateMachine.enter("EnemyTurn")
 
 func pickupRandomEnemy():
 	return aliveEnemys[randi() % aliveEnemys.size()]
+
+func performEnemyAttack():
+	for enemy in aliveEnemys:
+		var player = pickupRandomPlayer()
+		enemy.connect("attackFinished",player,"takeDamage")
+		enemy.attack()
+		yield(player,"damageTaken")
+		enemy.disconnect("attackFinished",player,"takeDamage")
+		if player.currentHealth == 0:
+			alivePlayers.erase(player)
+		if alivePlayers.empty():
+			stateMachine.enter("Lose")
+			break
+		else:
+			if enemy == aliveEnemys.back():
+				stateMachine.enter("Player1Turn")
+
+
+func pickupRandomPlayer():
+	return alivePlayers[randi() % alivePlayers.size()]
