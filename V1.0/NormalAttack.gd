@@ -1,4 +1,4 @@
-extends Control
+extends Button
 
 
 # Declare member variables here. Examples:
@@ -16,6 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_RunAway_pressed():
+func _on_NormalAttack_pressed():
 	print(name)
 	pass # Replace with function body.
